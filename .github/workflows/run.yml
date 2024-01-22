@@ -21,6 +21,39 @@ on:
    #   - main
 
 jobs:
+
+  state:
+    name: "S3-State"
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  
+    steps:
+      
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 0.15.4
+
+
+      # - name: Configure AWS Credentials
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: ${{ github.event.inputs.Region }}
+      
+      - name: Creating S3 
+        run: |
+          cd bootdtrab
+          terraform init
+          terraform apply -auto-approve
+ 
+
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
