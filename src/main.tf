@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-1"  # Change this to your desired AWS region
+  region = var.region  # Change this to your desired AWS region
 }
 
 # Define the first VPC
