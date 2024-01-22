@@ -21,10 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-     TF_region: ${{  github.event.inputs.region}}
-     TF_cidr_block: ${{  github.event.inputs.cidr_block}}
-     TF_access_key: ${{ secrets.ACCESS_KEY }}
-     TF_secret_key: ${{ secrets.SECRET_KEY }}
+     TF_region: ${{github.event.inputs.region}}
+     TF_cidr_block: ${{github.event.inputs.cidr_block}}
+     TF_access_key: ${{secrets.ACCESS_KEY}}
+     TF_secret_key: ${{secrets.SECRET_KEY}}
     
 
     steps:
@@ -40,9 +40,9 @@ jobs:
       run: |
           cd src
           terraform init
-          terraform plan -var="region=${TF_region}" -var="cidr_block=${TF_cidr_block}" -var="access_key=${TF_access_key}" -var="secret_key=${TF_secret_key}"
+          terraform plan 
           terraform --auto-approve apply
-          
+#          -var="region=${TF_region}" -var="cidr_block=${TF_cidr_block}" -var="access_key=${TF_access_key}" -var="secret_key=${TF_secret_key}"
         
 
 
