@@ -4,7 +4,7 @@
    peer_region = "us-west-1"
    peer_vpc_id = "vpc-0528c65dcd5e11cee"
    vpc_id      = aws_vpc.Main-VPC.id
-   auto_accept = true
+   #auto_accept = true
    
    tags = {
      Name = "VPC-Peering"
