@@ -35,14 +35,19 @@ jobs:
     
     - name: Checkout code
       uses: actions/checkout@v2
-          
-    - name: deploy infrastructure
+
+    - name: Initialize Terraform
       run: |
-          cd src
-          terraform init
-          terraform plan 
+        cd src
+        terraform init 
+        terraform validate
+
+          
+    - name: Apply Infrastructure
+      run: |
+          terraform plan -var="region=${TF_region}" -var="cidr_block=${TF_cidr_block}" -var="access_key=${TF_access_key}" -var="secret_key=${TF_secret_key}"
           terraform --auto-approve apply
-#          -var="region=${TF_region}" -var="cidr_block=${TF_cidr_block}" -var="access_key=${TF_access_key}" -var="secret_key=${TF_secret_key}"
+         
         
 
 
