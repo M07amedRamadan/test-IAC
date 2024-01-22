@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "statebucket" {
-  bucket = "terraform.tfstate-bucket"
+  bucket = "terraform.tfstate-bucket-ramadan"
 
   tags = {
    # Name        = "My bucket"
