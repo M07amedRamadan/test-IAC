@@ -8,6 +8,6 @@ resource "aws_vpc" "vpc1" {
   enable_dns_support = true
   enable_dns_hostnames = true
   tags = {
-    Name = "VPC1"
+    Name = "Main-VPC"
   }
 }
