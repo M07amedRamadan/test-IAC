@@ -4,6 +4,12 @@ provider "aws" {
   secret_key = var.secret-key
 }
 
+resource "aws_s3_bucket" "bootstrap" {
+  bucket = "terraform-bootstrap-bucket"
+  acl    = "private"
+  # Add other bucket configuration as needed
+}
+
 
 # Define the first VPC
 resource "aws_vpc" "Main-VPC" {
