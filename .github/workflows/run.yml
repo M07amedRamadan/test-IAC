@@ -48,7 +48,7 @@ jobs:
         id: init
         run: |
           cd src
-          terraform init -debug
+          terraform -debug init 
 
           
       # - name: Terraform Plan
