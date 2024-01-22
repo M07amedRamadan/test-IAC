@@ -14,7 +14,7 @@ on:
       name:
         description: "Enter backend name block"
         required: true
-        default: 'keyName'
+        default: 'keyname'
     
  #push:
    # branches:
