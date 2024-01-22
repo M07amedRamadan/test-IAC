@@ -23,7 +23,8 @@ jobs:
     env:
      TF_region: ${{  github.event.inputs.region}}
      TF_cidr_block: ${{  github.event.inputs.cidr_block}}
-    
+     TF_access_key: ${{ secrets.ACCESS_KEY }}
+     TF_secret_key: ${{ secrets.SECRET_KEY }}
     
 
     steps:
