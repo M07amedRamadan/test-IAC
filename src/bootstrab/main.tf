@@ -8,7 +8,7 @@ data "aws_s3_bucket" "existing_bucket" {
 }
 
 resource "aws_s3_bucket" "statebucket" {
-count = data.aws_s3_bucket.existing_bucket ? 0 : 1  # If the bucket exists, don't create it
+count = data.aws_s3_bucket.existing_bucket != null ? 0 : 1 # If the bucket exists, don't create it
   bucket = "terraform.tfstate-bucket-ramadan"
 }
 
