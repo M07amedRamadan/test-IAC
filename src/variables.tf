@@ -1,19 +1,15 @@
 variable "region"{
-
-default= var.TF_region
+type=string
 }
 
 variable "cidr_block"{
-
-default= var.TF_cidr_block
+type=string
 }
 
 variable "secret_key"{
-
-default= var.TF_secret_key
+type=string
 }
 
 variable "access_key"{
-
-default= var.TF_access_key
+type=string
 }
