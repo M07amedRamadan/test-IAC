@@ -38,7 +38,7 @@ jobs:
           
     - name: deploy infrastructure
       run: |
-          cd /src
+          cd src
           terraform init
           terraform plan
           terraform --auto-approve apply
