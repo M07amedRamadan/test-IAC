@@ -1,10 +1,11 @@
 
  # Create a VPC peering connection
  resource "aws_vpc_peering_connection" "peering_connection" {
-   peer_region = "us-west-2"
-   peer_vpc_id = aws_vpc.Main-VPC.id
-   vpc_id      = "vpc-0528c65dcd5e11cee"
-   auto_accept = true
+   peer_region = "us-west-1"
+   peer_vpc_id = "vpc-0528c65dcd5e11cee"
+   vpc_id      = aws_vpc.Main-VPC.id
+
+   #auto_accept = true
    
    tags = {
      Name = "VPC-Peering"
