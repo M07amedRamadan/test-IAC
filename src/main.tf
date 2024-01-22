@@ -3,7 +3,7 @@ provider "aws" {
   access_key = var.access_key
   secret_key = var.secret-key
 }
-}
+
 
 # Define the first VPC
 resource "aws_vpc" "Main-VPC"" {
