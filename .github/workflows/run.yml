@@ -1,0 +1,46 @@
+name: Build IAC
+
+on:
+ workflow_dispatch:
+    inputs:
+      Region1:
+        description: 'Run deploy to'
+        required: true
+        default: 'us-west-2'
+      Region:
+        description: "enter the region"
+        required: true
+        default: 'us-west-1'
+    
+ #push:
+   # branches:
+   #   - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Terraform
+      run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip
+          wget https://releases.hashicorp.com/terraform/0.15.4/terraform_0.15.4_linux_amd64.zip
+          unzip terraform_0.15.4_linux_amd64.zip
+          sudo mv terraform /usr/local/bin/
+          terraform --version
+  
+    # - name: deploy infrastructure
+    #   run: |
+    #       cd /src
+    #       terraform init
+    #       terraform plan
+    #       terraform --auto-approve apply
+          
+        
+
+
+      
