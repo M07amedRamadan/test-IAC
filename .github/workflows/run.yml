@@ -11,10 +11,10 @@ on:
         description: "Enter Main-VPC cidr block"
         required: true
         default: '11.0.0.0/16'
-      name:
-        description: "Enter backend name block"
-        required: true
-        default: 'keyname'
+      # name:
+      #   description: "Enter backend name block"
+      #   required: true
+      #   default: 'keyname'
     
  #push:
    # branches:
