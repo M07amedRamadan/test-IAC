@@ -71,7 +71,7 @@ jobs:
         id: init
         run: |
           cd src
-          terraform init
+          terraform init -var="region=${{github.event.inputs.Region}}"
    #       -reconfigure -backend-config="bucket=terraform.tfstate-bucket" -backend-config="key=${{ github.event.inputs.name }}" -backend-config="region=${{ github.event.inputs.Region }}"
           
 
