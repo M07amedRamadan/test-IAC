@@ -11,6 +11,10 @@ on:
         description: "Enter Main-VPC cidr block"
         required: true
         default: '11.0.0.0/16'
+      name:
+        description: "Enter backend name block"
+        required: true
+        default: 'keyName'
     
  #push:
    # branches:
@@ -48,7 +52,8 @@ jobs:
         id: init
         run: |
           cd src
-          terraform  init 
+          terraform init -reconfigure -backend-config="bucket=terraform.tfstate-bucket" -backend-config="key=${{ github.event.inputs.name }}" -backend-config=${{ github.event.inputs.Region }}"
+          
 
           
       # - name: Terraform Plan
