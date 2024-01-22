@@ -3,14 +3,14 @@ name: Build IAC
 on:
  workflow_dispatch:
     inputs:
-      Region1:
-        description: 'Run deploy to'
+      Region:
+        description: 'Enter the region'
         required: true
         default: 'us-west-2'
-      Region:
-        description: "enter the region"
+      cidr_block:
+        description: "Enter Main-VPC cidr block"
         required: true
-        default: 'us-west-1'
+        default: '10.0.0.0/16'
     
  #push:
    # branches:
@@ -19,26 +19,29 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    env:
+     TF_region: ${{  github.event.inputs.region}}
+     TF_cidr_bloch: ${{  github.event.inputs.cidr_block}}
+     TF_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+     TF_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    
 
     steps:
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+          terraform_version: 0.15.4
+    
     - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: Install Terraform
+          
+    - name: deploy infrastructure
       run: |
-          sudo apt-get update
-          sudo apt-get install -y unzip
-          wget https://releases.hashicorp.com/terraform/0.15.4/terraform_0.15.4_linux_amd64.zip
-          unzip terraform_0.15.4_linux_amd64.zip
-          sudo mv terraform /usr/local/bin/
-          terraform --version
-  
-    # - name: deploy infrastructure
-    #   run: |
-    #       cd /src
-    #       terraform init
-    #       terraform plan
-    #       terraform --auto-approve apply
+          cd /src
+          terraform init
+          terraform plan
+          terraform --auto-approve apply
           
         
 
