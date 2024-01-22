@@ -20,7 +20,7 @@
      Name = "VPC-Peering"
    }
  }
-
+#test
  # Create a route in the first VPC's route table to the second VPC via the peering connection
  resource "aws_route" "route_to_vpc2" {
    route_table_id         = aws_vpc.vpc1.main_route_table_id
