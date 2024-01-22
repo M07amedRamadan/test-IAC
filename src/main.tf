@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 # Define the first VPC
-resource "aws_vpc" "vpc1" {
+resource "aws_vpc" "Main-VPC"" {
   cidr_block = "10.0.0.0/16"
   enable_dns_support = true
   enable_dns_hostnames = true
