@@ -49,7 +49,7 @@ jobs:
       
       - name: Creating S3 
         run: |
-          cd src
+          cd bootdtrab
           terraform init
           terraform apply -auto-approve
  
