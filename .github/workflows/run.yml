@@ -70,20 +70,20 @@ jobs:
       - name: Terraform Init
         id: init
         run: |
-          cd src
+          cd src/main
           terraform init 
 
           
       - name: Terraform Plan
         id: plan
         run: |
-          cd src
+          cd src/main
           terraform plan -var="region=${{ github.event.inputs.Region }}" -var="cidr_block=${{ github.event.inputs.cidr_block }}"  
 
 
       - name: Terraform Apply
         run: |
-          cd primary_services_code
+          cd src/main
           terraform apply -auto-approve -var="region=${{ github.event.inputs.Region }}" -var="cidr_block=${{ github.event.inputs.cidr_block }}"  
 
 
