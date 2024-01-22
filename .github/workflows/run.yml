@@ -76,17 +76,17 @@ jobs:
           
 
           
-      # - name: Terraform Plan
-      #   id: plan
-      #   run: |
-      #     cd src
-      #     terraform plan -var="region=${{ github.event.inputs.Region }}" -var="cidr_block=${{ github.event.inputs.cidr_block }}"  
+      - name: Terraform Plan
+        id: plan
+        run: |
+          cd src
+          terraform plan -var="region=${{ github.event.inputs.Region }}" -var="cidr_block=${{ github.event.inputs.cidr_block }}"  
 
 
-      # - name: Terraform Apply
-      #   run: |
-      #     cd primary_services_code
-      #     terraform apply -auto-approve -var="region=${{ github.event.inputs.Region }}" -var="cidr_block=${{ github.event.inputs.cidr_block }}"  
+      - name: Terraform Apply
+        run: |
+          cd primary_services_code
+          terraform apply -auto-approve -var="region=${{ github.event.inputs.Region }}" -var="cidr_block=${{ github.event.inputs.cidr_block }}"  
 
 
         
