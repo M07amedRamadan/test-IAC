@@ -10,7 +10,7 @@ on:
       cidr_block:
         description: "Enter Main-VPC cidr block"
         required: true
-        default: '11.0.0.0/16'
+        default: '10.0.0.0/16'
     
  #push:
    # branches:
