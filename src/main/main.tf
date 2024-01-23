@@ -47,6 +47,7 @@ resource "aws_route_table_association" "public_subnet_association" {
 
 # Create a security group
 resource "aws_security_group" "example_security_group" {
+  vpc_id = aws_vpc.Main-VPC.id
   name        = "example-security-group"
   description = "Example Security Group for EC2 instances"
 
