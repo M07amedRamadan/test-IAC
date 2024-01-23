@@ -27,13 +27,13 @@ data "aws_vpcs" "specific_vpc" {
   }
 }
 output "vpc_id" {
-  value = data.aws_vpc.specific_vpc.id
+  value = data.aws_vpcs.specific_vpc.id
 }
 
 output "vpc_cidr_block" {
-  value = data.aws_vpc.specific_vpc.cidr_block
+  value = data.aws_vpcs.specific_vpc.cidr_block
 }
 
 output "vpc_arn" {
-  value = data.aws_vpc.specific_vpc.arn
+  value = data.aws_vpcs.specific_vpc.arn
 }
