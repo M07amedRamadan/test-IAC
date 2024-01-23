@@ -32,7 +32,7 @@ jobs:
               terraform_version: 0.15.4
           - name:
             run: |
-              cd src
+              cd src/main
               terraform init
               terraform destroy -auto-approve -var="region=${{ github.event.inputs.Region }}" -var="cidr_block=${{ github.event.inputs.cidr_block }}"  
             
