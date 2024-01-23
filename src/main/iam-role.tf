@@ -28,13 +28,9 @@ resource "aws_iam_policy" "ssm_connection_policy" {
       {
         Effect = "Allow",
         Action = [
-          "ssm:StartSession",
-          "ssm:TerminateSession",
-          "ssm:ResumeSession",
-          "ssm:ListSessions",
-          "ssm:DescribeSessions",
+          "ssm:*",
         ],
-        Resource = ["arn:aws:ssm:*:*:session/*"],
+        "Resource": "*"
       },
     ],
   })
