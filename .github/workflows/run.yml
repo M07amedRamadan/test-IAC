@@ -18,11 +18,11 @@ on:
       
       ami-type:
             description: 'Enter the AMI Type for EC2 Instance Scheduler'
-            default: 'ami-0fc5d935ebf8bc3bc'
+            default: 'ami-008fe2fc65df48dac'
             required: true
       instance-type:
           description: 'Enter the Intance Type for EC2 Instance Scheduler'
-          default: 't2.small'
+          default: 't2.micro'
           required: true
       
     
