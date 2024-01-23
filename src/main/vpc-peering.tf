@@ -37,7 +37,7 @@ provider "aws" {
  }
 
  resource "aws_route" "route_to_main_vpc" {
-   route_table_id         = data.aws_route_table.main_route_table_id
+   route_table_id         = data.Existance_VPC.main_route_table_id
    destination_cidr_block = aws_vpc.Main-VPC.cidr_block # the cidr_block of Main VPC
    vpc_peering_connection_id = aws_vpc_peering_connection.peering_connection.id
  }
