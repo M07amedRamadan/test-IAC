@@ -30,10 +30,10 @@ output "vpc_id" {
   value = data.aws_vpcs.specific_vpc.id
 }
 
-output "vpc_cidr_block" {
-  value = data.aws_vpcs.specific_vpc.cidr_block
+output "vpc_cidr_blocks" {
+  value = data.aws_vpcs.specific_vpc.cidr_blocks[0]
 }
 
 output "vpc_arn" {
-  value = data.aws_vpcs.specific_vpc.arn
+  value = data.aws_vpcs.specific_vpc.arns[0]
 }
