@@ -43,20 +43,35 @@ provider "aws" {
 #  }
  
 
-
-data "aws_vpcs" "example" {}
+data "aws_vpc" "example" {
+  id = "vpc-0528c65dcd5e11cee"  # Replace with the ID of your VPC
+}
 
 data "aws_route_table" "default_route_table" {
-  vpc_id = data.aws_vpcs.example.ids[0]
+  vpc_id = data.aws_vpc.example.id
 }
+
+output "default_route_table_id" {
+  value = data.aws_route_table.default_route_table.id
+}
+
+output "vpc_cidr_block" {
+  value = data.aws_vpc.example.cidr_block
+}
+
+
+
+
+# data "aws_vpcs" "example" {}
 
 # data "aws_route_table" "default_route_table" {
 #   vpc_id = data.aws_vpcs.example.ids[0]
 # }
 
-output "default_route_table_id" {
-  value = data.aws_route_table.default_route_table.id
-}
+
+# output "default_route_table_id" {
+#   value = data.aws_route_table.default_route_table.id
+# }
 # output "vpc_cidr_block" {
 #   value = data.aws_vpcs.example.cidr_blocks[0]
 # }
