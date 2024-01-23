@@ -20,7 +20,7 @@
  }
  
 
-data "aws_vpc" "specific_vpc" {
+data "aws_vpcs" "specific_vpc" {
   filter {
     name   = "vpc-id"
     values = ["vpc-0528c65dcd5e11cee"]  # Replace with the ID of your VPC
