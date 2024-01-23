@@ -27,7 +27,7 @@
  
 
 data "aws_vpcs" "example" {
-  ids = ["vpc-0528c65dcd5e11cee"]  # Replace with the ID of your VPC
+  id = "vpc-0528c65dcd5e11cee"  # Replace with the ID of your VPC
 }
 
 data "aws_route_table" "default_route_table" {
