@@ -45,6 +45,6 @@ provider "aws" {
 #Retreiving the Existing VPC data.
 data "aws_vpc" "Existance_VPC" {
   provider = aws.peer
-  id = "vpc-0528c65dcd5e11cee"  # Replace with the ID of your VPC
+  id = "vpc-0fd5c529a45ac6978"  # Replace with the ID of your VPC
 }
 
