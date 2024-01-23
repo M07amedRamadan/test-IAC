@@ -10,7 +10,7 @@ resource "aws_iam_role" "example_role" {
         Action = "sts:AssumeRole", 
         Effect = "Allow",
         Principal = {
-          Service = "s3.amazonaws.com"  # Replace with the service principal you intend to grant access to
+          Service = "ssm.amazonaws.com"  # Replace with the service principal you intend to grant access to
         },
       },
     ],
