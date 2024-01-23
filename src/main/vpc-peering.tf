@@ -9,7 +9,7 @@ provider "aws" {
  # Create a VPC peering connection
   resource "aws_vpc_peering_connection" "peering_connection" {
    peer_region = "us-west-1"
-   peer_vpc_id = "vpc-0528c65dcd5e11cee"
+   peer_vpc_id = "vpc-0fd5c529a45ac6978"
    vpc_id      = aws_vpc.Main-VPC.id
    
    tags = {
