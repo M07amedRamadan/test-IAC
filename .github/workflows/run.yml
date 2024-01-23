@@ -3,6 +3,10 @@ name: Build IAC
 on:
  workflow_dispatch:
     inputs:
+      name:
+        description: 'Enter Customer Name'
+        default: 'ramadan'
+        required: true
       Region:
         description: 'Enter the region'
         required: true
@@ -11,6 +15,24 @@ on:
         description: "Enter Main-VPC cidr block"
         required: true
         default: '11.0.0.0/16'
+      public_subnet-1:
+          description: 'Enter the CIDRs for Public Subnet 1'
+          default: '11.1.0.0/26'
+          required: true
+  
+      public_subnet-2:
+          description: 'Enter the CIDRs for Public Subnet 2'
+          default: '11.1.0.64/26'
+          required: true
+      ami-type:
+            description: 'Enter the AMI Type for EC2 Instance Scheduler'
+            default: 'ami-0fc5d935ebf8bc3bc'
+            required: true
+      instance-type:
+          description: 'Enter the Intance Type for EC2 Instance Scheduler'
+          default: 't2.small'
+          required: true
+      
     
 jobs:
 
@@ -69,16 +91,12 @@ jobs:
         id: plan
         run: |
           cd src/main
-          terraform plan -var="region=${{ github.event.inputs.Region }}" -var="cidr_block=${{ github.event.inputs.cidr_block }}"  
+          terraform plan  -var="CUSTOMER_NAME=${{ github.event.inputs.name }}" -var="instance_type=${{ github.event.inputs.instance-type }}" -var="ami=${{ github.event.inputs.ami-type }}" -var="region=${{ github.event.inputs.Region }}" -var="cidr_block=${{ github.event.inputs.cidr_block }}"  
 
 
       - name: Terraform Apply
         run: |
           cd src/main
-          terraform apply -auto-approve -var="region=${{ github.event.inputs.Region }}" -var="cidr_block=${{ github.event.inputs.cidr_block }}"  
+          terraform apply -auto-approve -var="CUSTOMER_NAME=${{ github.event.inputs.name }}" -var="instance_type=${{ github.event.inputs.instance-type }}" -var="ami=${{ github.event.inputs.ami-type }}" -var="region=${{ github.event.inputs.Region }}" -var="cidr_block=${{ github.event.inputs.cidr_block }}"  
 
-
-        
-
-
-      
+  
