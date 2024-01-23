@@ -1,4 +1,5 @@
 
+#Call Iam-role from AWS account to be reused.
 data "aws_iam_role" "existing_role" {
   name = "bakryCloudWatch"  # Replace with the name of your existing IAM role
 }

@@ -19,3 +19,21 @@
    vpc_peering_connection_id = aws_vpc_peering_connection.peering_connection.id
  }
  
+
+data "aws_vpc" "specific_vpc" {
+  filter {
+    name   = "vpc-id"
+    values = ["vpc-0528c65dcd5e11cee"]  # Replace with the ID of your VPC
+  }
+}
+output "vpc_id" {
+  value = data.aws_vpc.specific_vpc.id
+}
+
+output "vpc_cidr_block" {
+  value = data.aws_vpc.specific_vpc.cidr_block
+}
+
+output "vpc_arn" {
+  value = data.aws_vpc.specific_vpc.arn
+}
