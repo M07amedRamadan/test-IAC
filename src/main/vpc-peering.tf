@@ -1,6 +1,12 @@
+# provider "aws" {
+#   alias  = "peer"
+#   region = "us-west-1"
 
+#   # Accepter's credentials.
+# }
+ 
  # Create a VPC peering connection
- resource "aws_vpc_peering_connection" "peering_connection" {
+  resource "aws_vpc_peering_connection" "peering_connection" {
    peer_region = "us-west-1"
    peer_vpc_id = "vpc-0528c65dcd5e11cee"
    vpc_id      = aws_vpc.Main-VPC.id
@@ -11,6 +17,17 @@
      Name = "VPC-Peering"
    }
  }
+
+ resource "aws_vpc_peering_connection_accepter" "peer" {
+  # provider                  = aws.peer
+  vpc_peering_connection_id = aws_vpc_peering_connection.peering_connection.id
+  auto_accept               = true
+
+  tags = {
+    Side = "Accepter"
+  }
+}
+
 
  # Create a route in the first VPC's route table to the second VPC via the peering connection
  resource "aws_route" "route_to_vpc2" {
@@ -26,17 +43,21 @@
 #  }
  
 
-data "aws_vpcs" "example" {
-  id = "vpc-0528c65dcd5e11cee"  # Replace with the ID of your VPC
-}
 
-data "aws_route_table" "default_route_table" {
-  vpc_id = data.aws_vpcs.example.ids[0]
-}
+# data "aws_vpcs" "example" {
+#   filter {
+#     id = "vpc-0528c65dcd5e11cee"  # Replace with the ID of your VPC
+#   }
+  
+# }
 
-output "default_route_table_id" {
-  value = data.aws_route_table.default_route_table.id
-}
-output "vpc_cidr_block" {
-  value = data.aws_vpcs.example.cidr_blocks[0]
-}
+# data "aws_route_table" "default_route_table" {
+#   vpc_id = data.aws_vpcs.example.ids[0]
+# }
+
+# output "default_route_table_id" {
+#   value = data.aws_route_table.default_route_table.id
+# }
+# output "vpc_cidr_block" {
+#   value = data.aws_vpcs.example.cidr_blocks[0]
+# }
