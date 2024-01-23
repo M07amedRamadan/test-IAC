@@ -18,6 +18,12 @@
    destination_cidr_block = "172.31.0.0/16" # the cidr_block of the peering vpc
    vpc_peering_connection_id = aws_vpc_peering_connection.peering_connection.id
  }
+
+#  resource "aws_route" "route_to_vpc1" {
+#    route_table_id         = data.aws_route_table.default_route_table.id
+#    destination_cidr_block = "172.31.0.0/16" # the cidr_block of the peering vpc
+#    vpc_peering_connection_id = aws_vpc_peering_connection.peering_connection.id
+#  }
  
 
 data "aws_vpcs" "example" {
@@ -28,10 +34,9 @@ data "aws_route_table" "default_route_table" {
   vpc_id = data.aws_vpcs.example.ids[0]
 }
 
-output "vpc_id" {
-  value = data.aws_vpcs.specific_vpc.id
-}
-
 output "default_route_table_id" {
   value = data.aws_route_table.default_route_table.id
+}
+output "vpc_cidr_block" {
+  value = data.aws_vpcs.example.cidr_blocks[0]
 }
