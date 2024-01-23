@@ -1,9 +1,9 @@
-# provider "aws" {
-#   alias  = "peer"
-#   region = "us-west-1"
+provider "aws" {
+  alias  = "peer"
+  region = "us-west-1"
 
-#   # Accepter's credentials.
-# }
+  # Accepter's credentials.
+}
  
  # Create a VPC peering connection
   resource "aws_vpc_peering_connection" "peering_connection" {
@@ -19,7 +19,7 @@
  }
 
  resource "aws_vpc_peering_connection_accepter" "peer" {
-  # provider                  = aws.peer
+  provider                  = aws.peer
   vpc_peering_connection_id = aws_vpc_peering_connection.peering_connection.id
   auto_accept               = true
 
