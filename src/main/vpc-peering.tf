@@ -21,19 +21,20 @@
  
 
 data "aws_vpcs" "specific_vpc" {
-  filter {
-    name   = "vpc-id"
-    values = ["vpc-0528c65dcd5e11cee"]  # Replace with the ID of your VPC
-  }
+  id="vpc-0528c65dcd5e11cee"
+  # filter {
+  #   name   = "vpc-id"
+  #   values = ["vpc-0528c65dcd5e11cee"]  # Replace with the ID of your VPC
+  # }
 }
 output "vpc_id" {
   value = data.aws_vpcs.specific_vpc.id
 }
 
 output "vpc_cidr_blocks" {
-  value = data.aws_vpcs.specific_vpc.cidr_blocks[0]
+  value = data.aws_vpcs.specific_vpc.cidr_blocks
 }
 
 output "vpc_arn" {
-  value = data.aws_vpcs.specific_vpc.arns[0]
+  value = data.aws_vpcs.specific_vpc.arns
 }
