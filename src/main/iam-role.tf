@@ -18,7 +18,7 @@ resource "aws_iam_role" "example_role" {
 }
 
 # IAM Policy
-resource "aws_iam_policy" "ssm_console_access_policy" {
+resource "aws_iam_policy" "ssm_connection_policy" {
   name        = "ssm-console-access-policy"
   description = "IAM policy for SSM console access to EC2 instances"
 
