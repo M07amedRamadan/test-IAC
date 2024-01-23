@@ -44,3 +44,23 @@ resource "aws_route_table_association" "public_subnet_association" {
   subnet_id      = aws_subnet.public_subnet.id
   route_table_id = aws_route_table.public_route_table.id
 }
+
+# Create a security group
+resource "aws_security_group" "example_security_group" {
+  name        = "example-security-group"
+  description = "Example Security Group for EC2 instances"
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
