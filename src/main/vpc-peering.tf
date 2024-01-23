@@ -20,23 +20,18 @@
  }
  
 
-data "aws_vpcs" "specific_vpc" {
-  ids=["vpc-0528c65dcd5e11cee"]
-    #ids = ["vpc-a01106c2"]  # Replace with the ID of your VPC
-
-  # filter {
-  #   name   = "vpc-id"
-  #   values = ["vpc-0528c65dcd5e11cee"]  # Replace with the ID of your VPC
-  # }
+data "aws_vpcs" "example" {
+  ids = ["vpc-0528c65dcd5e11cee"]  # Replace with the ID of your VPC
 }
+
+data "aws_route_table" "default_route_table" {
+  vpc_id = data.aws_vpcs.example.ids[0]
+}
+
 output "vpc_id" {
   value = data.aws_vpcs.specific_vpc.id
 }
 
-output "vpc_cidr_blocks" {
-  value = data.aws_vpcs.specific_vpc.cidr_blocks
-}
-
-output "vpc_arn" {
-  value = data.aws_vpcs.specific_vpc.arns
+output "default_route_table_id" {
+  value = data.aws_route_table.default_route_table.id
 }
