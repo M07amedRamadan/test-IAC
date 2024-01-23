@@ -21,7 +21,9 @@
  
 
 data "aws_vpcs" "specific_vpc" {
-  id="vpc-0528c65dcd5e11cee"
+  ids=["vpc-0528c65dcd5e11cee"]
+    #ids = ["vpc-a01106c2"]  # Replace with the ID of your VPC
+
   # filter {
   #   name   = "vpc-id"
   #   values = ["vpc-0528c65dcd5e11cee"]  # Replace with the ID of your VPC
