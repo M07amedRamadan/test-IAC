@@ -7,10 +7,10 @@ resource "aws_iam_role" "example_role" {
     Statement = [
       {
         #This action is used to establish trust relationships between different entities, allowing one entity to assume the permissions of the role.
-        Action = "sts:AssumeRole", 
+        Action = "sts:AssumeRole",
         Effect = "Allow",
         Principal = {
-          Service = "ssm.amazonaws.com"  # Replace with the service principal you intend to grant access to
+          Service = "ssm.amazonaws.com"
         },
       },
     ],
@@ -18,9 +18,9 @@ resource "aws_iam_role" "example_role" {
 }
 
 # IAM Policy
-resource "aws_iam_policy" "ssm_connection_policy" {
-  name        = "ssm-connection-policy"
-  description = "IAM policy for SSM connection"
+resource "aws_iam_policy" "ssm_console_access_policy" {
+  name        = "ssm-console-access-policy"
+  description = "IAM policy for SSM console access to EC2 instances"
 
   policy = jsonencode({
     Version = "2012-10-17",
@@ -28,13 +28,18 @@ resource "aws_iam_policy" "ssm_connection_policy" {
       {
         Effect = "Allow",
         Action = [
-          "ssm:*",
+          "ssm:StartSession",
+          "ssm:TerminateSession",
+          "ssm:ResumeSession",
+          "ssm:ListSessions",
+          "ssm:DescribeSessions",
         ],
-        "Resource": "*"
+        Resource = "*",
       },
     ],
   })
 }
+
 # IAM Role Policy Attachment
 resource "aws_iam_role_policy_attachment" "example_attachment" {
   policy_arn = aws_iam_policy.ssm_connection_policy.arn
