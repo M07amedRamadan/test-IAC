@@ -30,36 +30,21 @@ provider "aws" {
 
 
  # Create a route in the first VPC's route table to the second VPC via the peering connection
- resource "aws_route" "route_to_vpc2" {
-   route_table_id         = aws_vpc.Main-VPC.default_route_table_id
-   destination_cidr_block = "172.31.0.0/16" # the cidr_block of the peering vpc
+ resource "aws_route" "route_to_existance_vpc" {
+   route_table_id         = aws_vpc.Main-VPC.main_route_table_id
+   destination_cidr_block = data.aws_vpc.Existance_VPC.cidr_block # the cidr_block of the Existing VPC
    vpc_peering_connection_id = aws_vpc_peering_connection.peering_connection.id
  }
 
-#  resource "aws_route" "route_to_vpc1" {
-#    route_table_id         = data.aws_route_table.default_route_table.id
-#    destination_cidr_block = "172.31.0.0/16" # the cidr_block of the peering vpc
-#    vpc_peering_connection_id = aws_vpc_peering_connection.peering_connection.id
-#  }
+ resource "aws_route" "route_to_main_vpc" {
+   route_table_id         = data.aws_route_table.default_route_table.id
+   destination_cidr_block = aws_vpc.Main-VPC.cidr_block # the cidr_block of Main VPC
+   vpc_peering_connection_id = aws_vpc_peering_connection.peering_connection.id
+ }
  
-
-data "aws_vpc" "example" {
+#Retreiving the Existing VPC data.
+data "aws_vpc" "Existance_VPC" {
   provider = aws.peer
   id = "vpc-0528c65dcd5e11cee"  # Replace with the ID of your VPC
 }
 
-# data "aws_route_table" "default_route_table" {
-#   vpc_id = data.aws_vpc.example.cidr_block
-# }
-
-# output "default_route_table_id" {
-#   value = data.aws_route_table.default_route_table.id
-# }
-
-output "vpc_cidr_block" {
-  value = data.aws_vpc.example.cidr_block
-}
-
-output "main_route_table_id" {
-  value = data.aws_vpc.example.main_route_table_id
-}
