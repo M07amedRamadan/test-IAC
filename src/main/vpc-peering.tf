@@ -44,6 +44,7 @@ provider "aws" {
  
 
 data "aws_vpc" "example" {
+  provider = aws.peer
   id = "vpc-0528c65dcd5e11cee"  # Replace with the ID of your VPC
 }
 
