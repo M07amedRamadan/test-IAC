@@ -1,0 +1,37 @@
+name: Distroy Infrastructure.
+
+on:
+    workflow_disbatch:
+        inputs:
+            Region:
+                description: 'Enter the region'
+                required: true
+                default: 'us-west-2'
+              cidr_block:
+                description: "Enter Main-VPC cidr block"
+                required: true
+                default: '11.0.0.0/16'
+
+jobs:
+    distroy:
+        name: "Terraform"
+        runs-on: ubuntu-latest
+        
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          
+        steps:
+    
+          - name: Checkout
+            uses: actions/checkout@v4
+    
+          - name: Setup Terraform
+            uses: hashicorp/setup-terraform@v2
+            with:
+              terraform_version: 0.15.4
+          - name:
+            run: |
+              terraform init
+              terraform destroy -auto-approve -var="region=${{ github.event.inputs.Region }}" -var="cidr_block=${{ github.event.inputs.cidr_block }}"  
+            
