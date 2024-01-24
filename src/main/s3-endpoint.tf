@@ -9,5 +9,9 @@ resource "aws_route_table_association" "s3_endpoint_association" {
 }
 
 output "s3_bucket_endpoint" {
-  value = aws_vpc_endpoint.s3_endpoint.dns_entry
+  value = aws_vpc.Main-VPC.main_route_table_id
 }
+
+# output "s3_bucket_endpoint" {
+#   value = aws_vpc_endpoint.s3_endpoint.
+# }
