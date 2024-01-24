@@ -1,4 +1,5 @@
 provider "aws" {
+  alias = "main"
  region = var.region  # Change this to your desired AWS region
 }
 
@@ -12,7 +13,6 @@ resource "aws_vpc" "Main-VPC" {
     Name = "Main-VPC"
   }
 }
- 
 
 resource "aws_subnet" "public_subnet" {
   vpc_id                  = aws_vpc.Main-VPC.id
@@ -22,7 +22,17 @@ resource "aws_subnet" "public_subnet" {
   tags = {
     Name = "Public Subnet Ramadan"
   }
+} 
+
+resource "aws_subnet" "private_subnet" {
+  vpc_id                  = aws_vpc.Main-VPC.id
+  cidr_block              = "11.0.1.0/24"  # Adjust CIDR block as needed
+
+  tags = {
+    Name = "Private Subnet Ramadan"
+  }
 }
+
 
 # Internet Gateway
 resource "aws_internet_gateway" "Mygateway" {
