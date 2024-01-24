@@ -25,7 +25,7 @@ resource "aws_subnet" "public_subnet" {
 }
 
 # Internet Gateway
-resource "aws_internet_gateway" "example" {
+resource "aws_internet_gateway" "Mygateway" {
   vpc_id = aws_vpc.Main-VPC.id
 }
 
@@ -35,7 +35,7 @@ resource "aws_route_table" "public_route_table" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.example.id
+    gateway_id = aws_internet_gateway.Mygateway.id
   }
 }
 
@@ -57,7 +57,7 @@ resource "aws_security_group" "example_security_group" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-#this is the output rule which is accept all connections from and to any port from the internet
+#this is the output rule which is accept all connections from and to any port to the internet
 
   egress {
     from_port   = 0

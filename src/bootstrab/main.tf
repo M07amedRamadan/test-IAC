@@ -1,5 +1,4 @@
 provider "aws" {
- # region = "us-west-2"  
   region = var.region
 }
 
@@ -7,7 +6,7 @@ provider "aws" {
 data "aws_s3_bucket" "existing_bucket" {
   bucket = "terraform.tfstate-bucket-ramadan"
 }
-
+#check if there is an bucket with same name it will not create anothe one just use existance.
 resource "aws_s3_bucket" "statebucket" {
 count = data.aws_s3_bucket.existing_bucket != null ? 0 : 1 # If the bucket exists, don't create it
   bucket = "terraform.tfstate-bucket-ramadan"
