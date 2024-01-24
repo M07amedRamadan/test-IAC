@@ -11,7 +11,7 @@ resource "aws_vpc_peering_connection" "my_peering_connection" {
   peer_vpc_id          = "vpc-0c2f60a694a109ae5"  # Replace with your MongoDB Atlas VPC ID
   vpc_id               = aws_vpc.Main-VPC.id
   auto_accept          = true
-  #peer_owner_id        = "mongodb_atlas_account_id"
+  peer_owner_id        = "126124458305"
   peer_region          = "us-east-1"  # Replace with your MongoDB Atlas region
 
   tags = {
