@@ -1,5 +1,5 @@
 resource "aws_vpc_endpoint" "s3_endpoint" {
-  vpc_id      = aws_vpc.your_vpc.id
+  vpc_id      = aws_vpc.Main-VPC.id
   service_name = "com.amazonaws.us-east-2.s3"  # Adjust the region
 }
 
