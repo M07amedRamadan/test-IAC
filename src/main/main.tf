@@ -1,5 +1,4 @@
 provider "aws" {
-  alias = "main"
  region = var.region  # Change this to your desired AWS region
 }
 
