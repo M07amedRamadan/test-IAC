@@ -6,6 +6,10 @@ resource "aws_vpc_endpoint" "s3_endpoint" {
 
 }
 
+resource "aws_vpc_endpoint_route_table_association" "s3_endpoint_association" {
+  vpc_endpoint_id =  aws_vpc_endpoint.s3_endpoint.id # Replace with your actual subnet ID
+  route_table_id = aws_route_table.public_route_table.id # Replace with your actual route table ID
+}
 
 
 
