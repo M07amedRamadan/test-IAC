@@ -48,15 +48,16 @@ resource "aws_route_table_association" "public_subnet_association" {
 # Create a security group
 resource "aws_security_group" "example_security_group" {
   vpc_id = aws_vpc.Main-VPC.id
-  name        = "example-security-group"
-  description = "Example Security Group for EC2 instances"
-
+  name        = "security-group"
+  description = "Security Group for EC2 instances"
+#this is the input rule which is accept all connections from and to any port from the internet
   ingress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+#this is the output rule which is accept all connections from and to any port from the internet
 
   egress {
     from_port   = 0
