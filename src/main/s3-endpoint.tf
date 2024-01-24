@@ -2,16 +2,11 @@ resource "aws_vpc_endpoint" "s3_endpoint" {
     vpc_id      = aws_vpc.Main-VPC.id
     service_name = "com.amazonaws.us-west-2.s3"  # Adjust the region
     security_group_ids = [aws_security_group.example_security_group.id]
-    subnet_ids          = [aws_subnet.private_subnet.id]
 
     tags = {Name = "s3_endpoint"}
 
 }
 
-# resource "aws_route_table_association" "s3_endpoint_association" {
-#   subnet_id      = aws_subnet.private_subnet.id  # Replace with your private subnet ID
-#   route_table_id = aws_vpc.Main-VPC.main_route_table_id # Replace with your route table ID
-# }
 
 
 
