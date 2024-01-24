@@ -48,3 +48,6 @@ data "aws_vpc" "Existance_VPC" {
   id = "vpc-0fd5c529a45ac6978"  # Replace with the ID of your VPC
 }
 
+output "Existance_VPC_main_route_table_id" {
+  value = data.aws_vpc.Existance_VPC.main_route_table_id
+}
