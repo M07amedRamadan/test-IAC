@@ -13,6 +13,23 @@ resource "aws_vpc" "Main-VPC" {
   }
 }
 
+
+resource "aws_subnet" "private_subnet" {
+  vpc_id                  = aws_vpc.Main-VPC.id
+  cidr_block              = "11.0.2.0/24"  # Adjust CIDR block as needed
+
+  tags = {
+    Name = "Private Subnet Ramadan"
+  }
+}
+
+resource "aws_route_table_association" "associate_private_subnet" {
+  subnet_id      = aws_subnet.private_subnet.id
+  route_table_id = aws_vpc.Main-VPC.main_route_table_id
+}
+
+
+
 resource "aws_subnet" "public_subnet" {
   vpc_id                  = aws_vpc.Main-VPC.id
   cidr_block              = "11.0.1.0/24"  # Adjust CIDR block as needed
@@ -22,16 +39,6 @@ resource "aws_subnet" "public_subnet" {
     Name = "Public Subnet Ramadan"
   }
 } 
-
-resource "aws_subnet" "private_subnet" {
-  vpc_id                  = aws_vpc.Main-VPC.id
-  cidr_block              = "11.0.1.0/24"  # Adjust CIDR block as needed
-
-  tags = {
-    Name = "Private Subnet Ramadan"
-  }
-}
-
 
 # Internet Gateway
 resource "aws_internet_gateway" "Mygateway" {
