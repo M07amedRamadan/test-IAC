@@ -1,4 +1,4 @@
-name: Cereate S3
+name: Create S3
 
 on:
  workflow_dispatch:
