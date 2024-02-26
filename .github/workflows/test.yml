@@ -30,7 +30,7 @@ jobs:
         id: init
         run: |
           cd testDir
-          terraform init -backend-config="bucket=terraform.tfstate-bucket-ramadan" -backend-config="region=us-east-1"
+          terraform init -backend-config="bucket=your-terraform-state-bucket" -backend-config="key=terraform.tfstate" -backend-config="region=us-east-1"
 
           
       - name: Terraform Plan
@@ -43,6 +43,5 @@ jobs:
       - name: Terraform Apply
         run: |
           cd testDir
-          terraform apply -auto-approve   
+          terraform apply -auto-approve     
 
-  
