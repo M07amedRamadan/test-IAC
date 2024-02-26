@@ -20,8 +20,7 @@ resource "aws_s3_bucket_public_access_block" "example" {
 resource "aws_s3_bucket_policy" "s3_bucket_policy" {
   bucket = aws_s3_bucket.s3_bucket.id
   
-  policy = <<EOF
-    ({
+  policy = jsonencode({
       "Version": "2008-10-17",
       "Id": "PolicyForCloudFrontPrivateContent",
       "Statement": [
@@ -36,6 +35,4 @@ resource "aws_s3_bucket_policy" "s3_bucket_policy" {
         }
       ]
     })
-  EOF
-
 }
