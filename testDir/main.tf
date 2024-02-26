@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "s3_bucket" {
-  bucket = "${var.CUSTOMER_NAME}.vultara.com"
+  bucket = "test.vultara.com"
   acl    = "private"
 
   block_public_acls       = true
@@ -29,7 +29,7 @@ resource "aws_s3_bucket_policy" "s3_bucket_policy" {
             "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ramadan}"
           },
           "Action": "s3:GetObject",
-          "Resource": "arn:aws:s3:::${var.CUSTOMER_NAME}.vultara.com/*"
+          "Resource": "arn:aws:s3:::test.vultara.com/*"
         }
       ]
     }
