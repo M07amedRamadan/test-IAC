@@ -9,8 +9,8 @@ resource "aws_s3_bucket" "s3_bucket" {
 resource "aws_s3_bucket_public_access_block" "example" {
   bucket = aws_s3_bucket.s3_bucket.id
 
-  block_public_acls       = false
-  block_public_policy     = false
+  block_public_acls       = true
+  block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
@@ -29,7 +29,7 @@ resource "aws_s3_bucket_policy" "s3_bucket_policy" {
           "Sid": "1",
           "Effect": "Allow",
           "Principal": {
-            "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ramadan}"
+            "arn:aws:s3:::terraform.tfstate-bucket-ramadan"
           },
           "Action": "s3:GetObject",
           "Resource": "arn:aws:s3:::test.vultara.com/*"
