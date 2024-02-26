@@ -30,7 +30,7 @@ jobs:
         id: init
         run: |
           cd testDir
-          terraform init 
+          terraform init -backend-config="bucket=terraform.tfstate-bucket-ramadan" -backend-config="region=us-east-1"
 
           
       - name: Terraform Plan
