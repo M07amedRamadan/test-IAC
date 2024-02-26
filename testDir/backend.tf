@@ -1,5 +1,6 @@
 terraform {
   backend "s3" {    
-    # backend stores .tftsate file remotely                                           
-  }
+    bucket         = "terraform.tfstate-bucket-ramadan"
+    region         = "us-east-1"
+ }
 }
