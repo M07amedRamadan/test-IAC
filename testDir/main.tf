@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "s3_bucket" {
-  bucket = "test.vultara.com"
+  bucket = "${var.CUSTOMER_NAME}.vultara.com"
 }
 
 resource "aws_s3_bucket_public_access_block" "example" {
