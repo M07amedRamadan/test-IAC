@@ -7,8 +7,8 @@ resource "aws_cloudfront_origin_access_identity" "oai" {
 resource "aws_cloudfront_distribution" "s3_distribution" {
 
   origin {
-    domain_name = "test.vultara.com.s3.us-east-1.amazonaws.com"
-    origin_id   = "test.vultara.com.s3.us-east-1.amazonaws.com"
+    domain_name = "${var.CUSTOMER_NAME}.vultara.com.s3.us-east-1.amazonaws.com"
+    origin_id   = "${var.CUSTOMER_NAME}.vultara.com.s3.us-east-1.amazonaws.com"
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.oai.cloudfront_access_identity_path
     }
@@ -42,9 +42,6 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     cache_policy_id        = "658327ea-f89d-4fab-a63d-7e88639e58f6"
     viewer_protocol_policy = "redirect-to-https"
   }
-
-  aliases     = ["${var.CUSTOMER_NAME}.vultara.com"]
-  price_class = "PriceClass_100"  #double check that it will be  use and canada
 
   # Geographical Restrictions
   restrictions {
