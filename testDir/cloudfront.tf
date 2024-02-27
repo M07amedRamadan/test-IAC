@@ -54,5 +54,11 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   tags = {
     Environment = "Production"
   }
+  viewer_certificate {
+    ssl_support_method             = "sni-only"
+    cloudfront_default_certificate = false
+    #acm_certificate_arn            = "arn:aws:acm:us-east-1:837491041518:certificate/74e193b1-9bae-49cd-af83-bc3f05ccbba1"
+    minimum_protocol_version       = "TLSv1.2_2021"
+  }
 
 }
