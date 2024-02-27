@@ -34,20 +34,22 @@ jobs:
 
 
       - name: Terraform Init
-        id: init
         run: |
           cd testDir
           terraform init -reconfigure -backend-config="bucket=terraform.tfstate-bucket-ramadan" -backend-config="key=terraform.tfstate" -backend-config="region=us-east-1"
 
           
-      - name: Terraform Plan
-        id: plan
+      # - name: Terraform Plan
+      #   run: |
+      #     cd testDir
+      #     terraform plan  -var="CUSTOMER_NAME=${{github.event.inputs.name}}"
+
+      # - name: Terraform Apply
+      #   run: |
+      #     cd testDir
+      #     terraform apply -auto-approve -var="CUSTOMER_NAME=${{github.event.inputs.name}}"
+
+      - name: Terraform destroy
         run: |
           cd testDir
-          terraform plan  -var="CUSTOMER_NAME=${{github.event.inputs.name}}"
-
-
-      - name: Terraform Apply
-        run: |
-          cd testDir
-          terraform apply -auto-approve -var="CUSTOMER_NAME=${{github.event.inputs.name}}"
+          terraform destroy -var="CUSTOMER_NAME=${{github.event.inputs.name}}"
