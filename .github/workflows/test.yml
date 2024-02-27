@@ -44,10 +44,10 @@ jobs:
         id: plan
         run: |
           cd testDir
-          terraform plan  -var="CUSTOMER_NAME=${{github.event.inputs.Region}}"
+          terraform plan  -var="CUSTOMER_NAME=${{github.event.inputs.name}}"
 
 
       - name: Terraform Apply
         run: |
           cd testDir
-          terraform apply -auto-approve -var="CUSTOMER_NAME=${{github.event.inputs.Region}}"
+          terraform apply -auto-approve -var="CUSTOMER_NAME=${{github.event.inputs.name}}"
