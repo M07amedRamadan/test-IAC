@@ -13,7 +13,7 @@ jobs:
         run: |
           cd docker
           docker build -t anguler_image .
-          ls
+          docker images
           
   runContainer:
     runs-on: ubuntu-latest
