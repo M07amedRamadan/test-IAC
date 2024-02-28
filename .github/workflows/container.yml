@@ -20,7 +20,7 @@ jobs:
     needs: buildImage 
     services:
       my-container:
-        image: angular_image:latest
+        image: docker.io/library/angular_image
         options: 
           --name angular_container
           -p 4200:4200 
