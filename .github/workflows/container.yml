@@ -1,0 +1,37 @@
+name: Automation Testing Parallel
+on:
+ # push
+    
+jobs:
+  buildImage:
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Pull Docker image
+        run: docker pull ubuntu:latest
+
+      - name: Build and run Docker container
+        run: |
+          docker build -t my-container .
+          docker run -d --name angulerImage -d my-container
+
+  runContainer:
+    runs-on: ubuntu-latest
+    services:
+      my-container:
+        image: angulerImage:latest
+        options: 
+          --name angulerContainer
+          -p 4200:4200 
+    steps:
+      - name: Build and run Docker container
+        run: |
+          docker build -t my-container .
+          docker run --name my-container -d my-container
+
+      - name: Step 1
+        run: echo "This step runs on the job's primary container"
+
+      - name: Step 2
+        run: echo "This step runs on the same container as the first step"
+        container: my-container
