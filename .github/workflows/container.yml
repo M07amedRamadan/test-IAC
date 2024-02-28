@@ -1,4 +1,4 @@
-name: Automation Testing Parallel
+name: Sharing image between two jobs
 on:
   push
     
@@ -20,10 +20,14 @@ jobs:
     needs: buildImage 
     services:
       my-container:
-        image: docker.io/library/angular_image
+        image: angular_image
         options: 
           --name angular_container
           -p 4200:4200 
+        volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
     steps:
       - name: Step 1
-        run: echo "This step runs on the job's primary container"
+        run: |
+          docker ps -a
+          echo "This step runs on the job's primary container"
