@@ -1,2 +1,2 @@
 From ubuntu:latest
-CMD ["echo","hello world"]
+CMD ["sh","-c","echo hello world && sleep 3600"]
