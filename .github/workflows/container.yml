@@ -1,6 +1,6 @@
 name: Automation Testing Parallel
 on:
- push
+  push
     
 jobs:
   buildImage:
@@ -9,10 +9,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Build and run Docker container
+      - name: Build Docker image
         run: |
           cd docker
-          docker build -t anguler_image .
+          docker build -t angular_image .
           docker images
           
   runContainer:
@@ -20,18 +20,10 @@ jobs:
     needs: buildImage 
     services:
       my-container:
-        image: anguler_image:latest
+        image: angular_image:latest
         options: 
-          --name anguler_container
+          --name angular_container
           -p 4200:4200 
     steps:
-      - name: Build and run Docker container
-        run: |
-            output="done"
-            echo "::set-output name=output::$output"
       - name: Step 1
         run: echo "This step runs on the job's primary container"
-
-      # - name: Step 2
-      #   run: echo "This step runs on the same container as the first step"
-      #   container: angulerContainer
