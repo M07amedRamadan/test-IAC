@@ -13,6 +13,8 @@ jobs:
         run: |
           cd docker
           echo "hello from runner"
+          echo "hello from runner"
+
       - name: Step 1
         run: |
           echo "This step runs on the job's primary container"
