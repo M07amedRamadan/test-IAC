@@ -1,0 +1,18 @@
+name: Sharing image between two jobs
+on:
+  push
+    
+jobs:
+  buildImage:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Build Docker image
+        run: |
+          cd docker
+          echo "hello from runner"
+      - name: Step 1
+        run: |
+          echo "This step runs on the job's primary container"
