@@ -3,7 +3,22 @@ on:
   push
     
 jobs:
-  buildImage:
+  First-job:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Build Docker image
+        run: |
+          echo "hello from runner"
+          echo "hello from runner"
+
+      - name: Step 1
+        run: |
+          echo "This step runs on the job's primary container"
+          
+  Second-job:
     runs-on: self-hosted
     steps:
       - name: Checkout
@@ -12,7 +27,7 @@ jobs:
       - name: Build Docker image
         run: |
           cd docker
-          echo "hello from runner"
+          echo "hello from secondjob"
           echo "hello from runner"
 
       - name: Step 1
