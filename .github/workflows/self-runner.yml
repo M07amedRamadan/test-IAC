@@ -19,6 +19,7 @@ jobs:
           echo "This step runs on the job's primary container"
           
   Second-job:
+    needs: First-job
     runs-on: self-hosted
     steps:
       - name: Checkout
