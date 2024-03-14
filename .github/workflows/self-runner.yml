@@ -1,6 +1,6 @@
 name: Sharing image between two jobs
 on:
-  push
+   workflow_dispatch:
     
 jobs:
   First-job:
