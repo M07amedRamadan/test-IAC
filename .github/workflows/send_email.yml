@@ -18,8 +18,8 @@ jobs:
         server_address: smtp.gmail.com
         server_port: 465
         # user credentials
-        username: mohamed.ramadan.b0@gmail.com
-        password: Google@97166237
+        username: mohamed.ramadan.bakry@vultara.com
+        password: Mrb@97166238
         # email subject
         subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
         # email body as text
