@@ -1,11 +1,11 @@
-name: test
+name: Test sending mails
 on: 
   push:
     branches:
-      -main
+      - main
 jobs:
   send_email:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps: 
     - name: Create MongoDB container
       run: |
