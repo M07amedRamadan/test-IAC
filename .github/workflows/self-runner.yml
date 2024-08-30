@@ -13,24 +13,25 @@ jobs:
         run: |
           echo "hello from runner"
           echo "hello from runner"
+          sleep 1500
 
       - name: Step 1
         run: |
           echo "This step runs on the job's primary container"
           
-  Second-job:
-    needs: First-job
-    runs-on: self-hosted
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  # Second-job:
+  #   needs: First-job
+  #   runs-on: self-hosted
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
         
-      - name: Build Docker image
-        run: |
-          cd docker
-          echo "hello from secondjob"
-          echo "hello from runner"
+  #     - name: Build Docker image
+  #       run: |
+  #         cd docker
+  #         echo "hello from secondjob"
+  #         echo "hello from runner"
 
-      - name: Step 1
-        run: |
-          echo "This step runs on the job's primary container"
+  #     - name: Step 1
+  #       run: |
+  #         echo "This step runs on the job's primary container"
